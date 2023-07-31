@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Staff Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <script src="dashboard.js"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('pexels-engin-akyurt-5220578.jpg');
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+        }
+        .container {
+
+            text-align: center;
+            padding: 50px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: rgba(166, 145, 168, 0.301);
+            box-shadow: 10px 5px 5px rgb(112, 108, 108);
+        }
+        .btn {
+            display: inline-block;
+            margin: 20px;
+            padding: 10px 20px;
+            color: #fff;
+            background-color: #743ee7;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .logo {
+            width: 50%;
+            background-color: #335ecc44;
+            text-align: center;
+            color: white;
+            font-size: 35px;
+            font-family: 'Poppins', sans-serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            padding: 20px 0;
+            overflow: hidden;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+<body>
+<h1 class = "logo"> MyClinicManager </h1>
+<div class="container">
+    <h1 id="welcome">Welcome, Staff!</h1>
+    <p>Select an option to continue:</p>
+    <a id="patientListButton" href="#" class="btn">View Patients</a>
+    <a href="#" class="btn">Manage Appointments</a>
+    <a href="#" class="btn">View Schedule</a>
+    <a id="logout" href="#" class="btn">Logout</a>
+</div>
+</body>
+</html>
