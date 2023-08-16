@@ -1,6 +1,7 @@
 package controller;
 
 import manager.RegistrationManager;
+import model.ErrorDetails;
 import model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,16 +30,21 @@ public class LoginController {
         String username = loginData.get("username");
         String password = loginData.get("password");
 
-        User user = registrationManager.login(username, password);
+        try {
+            User user = registrationManager.login(username, password);
 
-        if(user == null){
-            return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
-        }
-        else {
             Map<String, Object> response = new HashMap<>();
             response.put("name", user.getFirstName());
             response.put("loggedIn", true);
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
+        catch(IllegalArgumentException e) {
+            ErrorDetails errorDetails = new ErrorDetails();
+            errorDetails.setMessage("User not found.");
+            return ResponseEntity
+                    .status(HttpStatus.UNAUTHORIZED)
+                    .body(errorDetails);
+        }
     }
+
 }

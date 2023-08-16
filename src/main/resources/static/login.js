@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 window.location.href = 'dashboard.html';
             } else {
                 // Login failed
-                alert('Login failed. Please check your username and password.');
+                alert('Login failed. ' + (responseData.message || 'Please check your username and password.'));
             }
         })
         .catch(error => {
