@@ -1,5 +1,7 @@
 package model;
 
+import jakarta.persistence.*;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
@@ -11,11 +13,15 @@ import java.util.Random;
  * @author Joshua Donnelly
  *
  */
+@Entity
+@Table(name = "users")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class User {
     /** User's first name. */
     private String firstName;
     /** User's last name. */
     private String lastName;
+    @Id
     /** User's id. */
     private String id;
     /** User's email. */
@@ -36,6 +42,10 @@ public abstract class User {
         this.id = generateId();
         setEmail(email);
         setPassword(password);
+    }
+
+    public User() {
+        this.id = generateId();
     }
 
     /**

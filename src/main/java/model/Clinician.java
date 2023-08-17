@@ -1,9 +1,13 @@
 package model;
 
 import access.FullPatientInfoAccess;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 import java.util.List;
 
+@Entity
+@Table(name = "clinicians")
 public class Clinician extends Staff implements FullPatientInfoAccess {
     /**
      * Constructs a User and sets all fields to parameters

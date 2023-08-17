@@ -1,7 +1,12 @@
 package model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
 import java.util.List;
 
+@Entity
+@Table(name = "administrators")
 public class Administrator extends Staff {
 
 

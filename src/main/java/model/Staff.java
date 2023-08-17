@@ -1,9 +1,13 @@
 package model;
 
 import access.BasicPatientInfoAccess;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 import java.util.List;
 
+@Entity
+@Table(name = "staff")
 public abstract class Staff extends User implements BasicPatientInfoAccess {
     /** ID unique to employee */
     private String jobTitle;
