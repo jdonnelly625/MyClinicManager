@@ -2,15 +2,60 @@ body {
     background-image: url('pexels-zaksheuskaya-1568607.jpg');
     background-size: cover;
     font-family: Arial, sans-serif;
+    margin:0;
+    padding:0;
+}
+
+.staffList, .patientList {
+    background-image: url('multicolor-background.jpg');
+}
+
+.appointmentsBody {
+    background-image: url('pinkish-background.jpg');
+}
+
+.makeBody {
+    background-image: url('firelike.jpg');
 }
 
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     padding: 20px;
 }
+
+.table-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+
+
+.appointment-container {
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container, .appointment-container, .table-container {
+    min-height: 100vh; /* This ensures it's at least the height of the viewport but can grow beyond it */
+    height: auto; /* This allows it to grow with content */
+}
+
+
+.appointment-registration-form {
+    background-color: rgba(109, 154, 237, 0.498);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    font-family: Arial, sans-serif;
+}
+
+
 
 .registration-form {
     background-color: rgba(109, 154, 237, 0.498);
@@ -20,13 +65,14 @@ body {
     width: 300px;
 }
 
-.container h2 {
+.container h2, .appointment-container h2, .table-container h2 {
     text-align: center;
     font-family: 'Poppins', sans-serif; /* Use Poppins font */
-    font-size: 2em;
+    font-size: 40px;
     color: #333;
     text-shadow: 2px 2px 4px #aaa;
 }
+
 
 .registration-form input {
     width: 100%;
@@ -37,6 +83,7 @@ body {
 }
 
 .registration-form button {
+    margin-top: 20px;
     width: 100%;
     padding: 10px;
     border: none;
@@ -55,6 +102,7 @@ body {
     width: 100%;
     margin-top: 20px;
     border-collapse: collapse;
+    overflow-y: auto;
 }
 
 .patient-list th, .patient-list td {
@@ -67,9 +115,30 @@ body {
     color: white;
 }
 
-.patient-list tr:nth-child(even) {
-    background-color: #f2f2f2;
+
+.search-list table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
 }
+
+.search-list th, .patient-list td {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.search-list th {
+    background-color: #5c6bc0;
+    color: white;
+}
+
+.patient-list tr:nth-child(even), .search-list tr:nth-child(even) {
+    background-color: #B1DEF5;
+}
+.patient-list tr:nth-child(odd), .search-list tr:nth-child(odd) {
+    background-color: #E2EEF3;
+}
+
 
 .btn {
             display: inline-block;
@@ -80,4 +149,19 @@ body {
             border-radius: 5px;
             text-decoration: none;
             font-size: 15px;
+            cursor: pointer;
 }
+
+.btn:hover {
+    filter: brightness(0.9);
+}
+
+
+
+.appointment-label {
+    font-size: 15px;
+    font-family: font-family: Arial, sans-serif;
+    font-weight: bold;
+    padding: 20px;
+}
+

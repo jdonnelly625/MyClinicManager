@@ -2,6 +2,7 @@ package controller;
 
 import manager.RegistrationManager;
 import model.Patient;
+import model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +23,16 @@ public class PatientController {
 
     @PostMapping("/register")
     public ResponseEntity<Patient> registerPatient(@RequestBody Patient patient) {
-        Patient registeredPatient = registrationManager.registerPatient(patient);
-        return new ResponseEntity<>(registeredPatient, HttpStatus.CREATED);
+        try{
+            Patient registeredPatient = registrationManager.registerPatient(patient);
+            return new ResponseEntity<>(registeredPatient, HttpStatus.CREATED);
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+            System.out.println("Registration patient error");
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 
     @PostMapping("/deregister")
@@ -38,5 +47,12 @@ public class PatientController {
         return new ResponseEntity<>(patients, HttpStatus.OK);
     }
 
-    //... other methods
+    @GetMapping("/searchPatient")
+    public ResponseEntity<List<Patient>> searchPatientByLastName(@RequestParam String lastName) {
+        List<Patient> patients = registrationManager.getPatientByLastName(lastName);
+        if (patients.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(patients, HttpStatus.OK);
+    }
 }

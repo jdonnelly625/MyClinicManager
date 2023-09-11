@@ -1,11 +1,25 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "patients")
 public class Patient extends User {
+
+//    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
+//    @JsonBackReference
+//    private Set<Appointment> appointments;
 
 
     /**
@@ -13,6 +27,7 @@ public class Patient extends User {
      */
     public Patient() {
         super();
+        //this.appointments = new HashSet<>();
 
     }
     /**

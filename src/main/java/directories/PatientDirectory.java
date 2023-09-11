@@ -36,4 +36,16 @@ public class PatientDirectory {
         }
         return null;
     }
+
+    public List<Patient> getByLastName(String lastName) {
+
+        List<Patient> patients = patientRepository.findByLastNameIgnoreCase(lastName);
+        return patients;
+    }
+
+    public Patient getPatientById(String patientId) {
+        return patientRepository.findById(patientId).get();
+    }
+
+
 }

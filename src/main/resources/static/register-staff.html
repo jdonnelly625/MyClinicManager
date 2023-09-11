@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Patient Registration Page</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+  <script src="register-staff.js"></script>
+</head>
+<body class = "makeBody">
+<div class="container">
+  <div class="registration-form">
+    <h2>Staff Registration</h2>
+    <form id="registrationForm">
+      <div class="input-group">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+      </div>
+      <div class="input-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+      </div>
+      <div class="input-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Email" required>
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Password" required>
+      </div>
+      <div class="input-group">
+        <label for="repeatPassword">Confirm Password</label>
+        <input type="password" id="repeatPassword" name="repeatPassword" placeholder="Repeat Password" required>
+      </div>
+      <div class="input-group">
+        <label for="jobTitle">Job Title</label>
+        <input type="text" id="jobTitle" name="jobTitle" placeholder="Job Title" required>
+      </div>
+      <div class="input-group">
+        <label for="staffRole">Select Staff Role:</label>
+        <select id="staffRole">
+          <option value="clinician">Clinician</option>
+          <option value="administrator">Administrator</option>
+        </select>
+      </div>
+
+      <button type="submit">Submit</button>
+      <button id="staffListButton">Registered Staff List</button>
+    </form>
+
+  </div>
+</div>
+</body>
+</html>

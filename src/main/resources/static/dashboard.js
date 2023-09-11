@@ -48,6 +48,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
     document.getElementById('logout').addEventListener('click', function() {
             sessionStorage.clear();
-            window.location.href = 'patient-list.html';
+            window.location.href = 'login.html';
+    });
+
+    document.getElementById('manageAppointments').addEventListener('click', function() {
+
+        window.location.href = 'appointments.html';
+    });
+
+    document.getElementById('viewStaff').addEventListener('click', function() {
+        window.location.href = 'staff-list.html';
     });
 });

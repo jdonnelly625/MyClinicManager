@@ -25,7 +25,8 @@ document.addEventListener('DOMContentLoaded', function () {
             firstName: firstName,
             lastName: lastName,
             email: email,
-            password: password
+            password: password,
+            appointments: null
         };
 
         fetch('http://localhost:8080/patients/register', {

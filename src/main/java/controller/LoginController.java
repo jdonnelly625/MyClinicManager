@@ -29,6 +29,14 @@ public class LoginController {
     public ResponseEntity<?> login(@RequestBody Map<String, String> loginData) {
         String username = loginData.get("username");
         String password = loginData.get("password");
+        if(username == null || password == null) {
+            ErrorDetails errorDetails = new ErrorDetails();
+            errorDetails.setMessage("Must enter username or password.");
+            return ResponseEntity
+                    .status(HttpStatus.UNAUTHORIZED)
+                    .body(errorDetails);
+
+        }
 
         try {
             User user = registrationManager.login(username, password);
@@ -40,7 +48,7 @@ public class LoginController {
         }
         catch(IllegalArgumentException e) {
             ErrorDetails errorDetails = new ErrorDetails();
-            errorDetails.setMessage("User not found.");
+            errorDetails.setMessage("User not found. Check username and password.");
             return ResponseEntity
                     .status(HttpStatus.UNAUTHORIZED)
                     .body(errorDetails);

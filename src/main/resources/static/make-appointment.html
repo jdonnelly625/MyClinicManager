@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Patient Registration Page</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+  <script src="make-appointment.js"></script>
+</head>
+<body class = "makeBody">
+<div class="appointment-container">
+  <div class = "patient-list">
+    <h2>Appointment Registration</h2>
+    <form id="registrationForm" class="appointment-registration-form">
+      <div class="input-group">
+        <label for="patientLastName" class="appointment-label">Search patient by Last Name</label>
+        <input type="text" id="patientLastName" name="patientLastName" placeholder="Last Name">
+        <button type="button" id="searchPatient">Search</button>
+      </div>
+      <table id="patientList">
+        <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>ID</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+
+      <div class="input-group">
+        <label for="clinicianLastName" class="appointment-label">Search clinician by Last Name</label>
+        <input type="text" id="clinicianLastName" name="clinicianLastName" placeholder="Last Name">
+        <button type="button" id="searchClinician">Search</button>
+      </div>
+
+      <table id="clinicianList">
+        <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>ID</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+
+      <div class="input-group">
+        <label for="datetime" class="appointment-label">Date and Time</label>
+        <input type="datetime-local" id="datetime" name="datetime">
+      </div>
+      <button type="submit" class = "btn">Submit</button>
+      <button id="appointmentListButton" class = "btn">Appointment List</button>
+    </form>
+  </div>
+</div>
+<script src="registration.js"></script>
+</body>
+</html>

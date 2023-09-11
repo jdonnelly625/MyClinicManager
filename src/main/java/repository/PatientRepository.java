@@ -5,8 +5,10 @@ import model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface PatientRepository extends JpaRepository<Patient, Long> {
+import java.util.List;
 
+@Repository
+public interface PatientRepository extends JpaRepository<Patient, String> {
+    List<Patient> findByLastNameIgnoreCase(String lastName);
 
 }

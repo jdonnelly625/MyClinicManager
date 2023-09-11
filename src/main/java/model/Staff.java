@@ -13,7 +13,7 @@ public abstract class Staff extends User implements BasicPatientInfoAccess {
     private String jobTitle;
 
 
-
+    public Staff() { super(); }
     /**
      * Constructs a User and sets all fields to parameters
      *

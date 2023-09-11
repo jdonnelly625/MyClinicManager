@@ -1,12 +1,10 @@
 package manager;
 
+import directories.AppointmentDirectory;
 import directories.PatientDirectory;
 import directories.StaffDirectory;
 import jakarta.annotation.PostConstruct;
-import model.Administrator;
-import model.Patient;
-import model.Staff;
-import model.User;
+import model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,31 +18,33 @@ public class RegistrationManager {
 
     private final StaffDirectory staffDirectory;
     private final PatientDirectory patientDirectory;
+    private final AppointmentDirectory appointmentDirectory;
     private User currentUser;
 
     @Autowired
-    public RegistrationManager(StaffDirectory staffDirectory, PatientDirectory patientDirectory) {
+    public RegistrationManager(StaffDirectory staffDirectory, PatientDirectory patientDirectory, AppointmentDirectory appointmentDirectory) {
         this.staffDirectory = staffDirectory;
         this.patientDirectory = patientDirectory;
+        this.appointmentDirectory = appointmentDirectory;
         this.currentUser = null;
     }
 
     /**
-     * After construciton set the default administrator as able to login
+     * After construction set the default administrator as able to login for demo purposes
      */
     @PostConstruct
     public void init() {
-        Staff admin = new Administrator("Admin", "User", "admin@example.com", "adminPassword", "admin");
-        System.out.println("inside init");
-        try {
-            registerStaff(admin);
-        } catch (Exception e) {
-            // the admin account already exists, no need to create a new one
+        if(staffDirectory.getStaffByEmail("admin@example.com") == null) {
+            Administrator admin = new Administrator("Admin", "User", "admin@example.com", "adminPassword", "admin");
+            System.out.println("inside init");
+            try {
+                registerAdministrator(admin);
+            } catch (Exception e) {
+                e.printStackTrace();
+                // the admin account already exists, no need to create a new one
+            }
         }
-    }
 
-    public Staff registerStaff(Staff staff) {
-        return staffDirectory.addStaff(staff);
     }
 
 
@@ -60,6 +60,10 @@ public class RegistrationManager {
     public Patient deregisterPatient(Patient patient) {
         patientDirectory.removePatient(patient);
         return patient;
+    }
+
+    public Staff deregisterStaffById(String staffId) {
+        return staffDirectory.removeStaffById(staffId);
     }
 
     //Uses email for username for now
@@ -88,11 +92,9 @@ public class RegistrationManager {
                 return s;
             }
         }
-        else {
-            throw new IllegalArgumentException("User doesn't exist.");
-        }
+        System.out.println("Throwing exception");
+        throw new IllegalArgumentException("User doesn't exist.");
 
-        return null;
     }
 
     /**
@@ -110,4 +112,44 @@ public class RegistrationManager {
         }
     }
 
+    public Appointment makeAppointment(Appointment appointment) {
+        appointmentDirectory.makeAppointment(appointment);
+        return appointment;
+    }
+
+    public List<Appointment> getAppointments() {
+        return appointmentDirectory.getAppointments();
+    }
+
+    public List<Patient> getPatientByLastName(String lastName) {
+        return patientDirectory.getByLastName(lastName);
+    }
+
+    public Staff registerClinician(Clinician clinician) {
+        return staffDirectory.addClinician(clinician);
+    }
+
+    public Staff registerAdministrator(Administrator administrator) {
+        System.out.println("Registering administrator");
+        return staffDirectory.addAdministrator(administrator);
+    }
+
+    public List<Staff> getRegisteredStaff() {
+        return staffDirectory.getAllStaff();
+    }
+
+    public List<Clinician> getClinicianByLastName(String lastName) {
+
+        return staffDirectory.getCliniciansByLastName(lastName);
+    }
+
+    public Patient getPatientById(String patientId) {
+
+        return patientDirectory.getPatientById(patientId);
+    }
+
+    public Clinician getClinicianById(String clinicianId) {
+
+        return staffDirectory.getClinicianById(clinicianId);
+    }
 }

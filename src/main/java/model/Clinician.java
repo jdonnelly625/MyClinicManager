@@ -1,14 +1,31 @@
 package model;
 
 import access.FullPatientInfoAccess;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "clinicians")
 public class Clinician extends Staff implements FullPatientInfoAccess {
+
+    /**
+     * Default constructor
+     */
+    public Clinician() {
+        super();
+
+    }
+
+//    @OneToMany(mappedBy = "clinician", cascade = CascadeType.ALL)
+//    @JsonBackReference
+//    private Set<Appointment> appointments;
+
     /**
      * Constructs a User and sets all fields to parameters
      *

@@ -19,12 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
             },
             body: JSON.stringify(data)
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();  // This returns a promise
-        })
+        .then(response => response.json())
         .then(responseData => {
             if (responseData.loggedIn) {
                 // Login was successful
@@ -39,6 +34,8 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .catch(error => {
             console.error('Error:', error);
+            alert('An error occurred. Please try again later.');
         });
+
     });
 });

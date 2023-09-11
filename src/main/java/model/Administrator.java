@@ -12,6 +12,13 @@ public class Administrator extends Staff {
 
 
     /**
+     * Default constructor
+     */
+    public Administrator() {
+        super();
+
+    }
+    /**
      * Constructs a User and sets all fields to parameters
      *
      * @param firstName of user
