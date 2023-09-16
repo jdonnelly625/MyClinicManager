@@ -11,8 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Map;
+import java.time.LocalDate;
+import java.util.*;
 
 @RestController
 @RequestMapping("/staff")
@@ -65,6 +65,25 @@ public class StaffController {
         List<Staff> staff = registrationManager.getRegisteredStaff();
         return new ResponseEntity<>(staff, HttpStatus.OK);
     }
+
+    @GetMapping("clinicianNames")
+    public ResponseEntity<List<Map<String, Object>>> getClinicianNames() {
+        List<Clinician> clinicians = registrationManager.getAllClinicians();
+        List<Map<String, Object>> clinicianData = new ArrayList<>();
+
+        for(Clinician c: clinicians) {
+            Map<String, Object> data = new HashMap<>();
+            data.put("id", c.getId());
+            data.put("name", c.getFirstName() + " " + c.getLastName());
+            clinicianData.add(data);
+        }
+
+        return new ResponseEntity<>(clinicianData, HttpStatus.OK);
+    }
+
+
+
+
 
     @GetMapping("/searchClinician")
     public ResponseEntity<List<Clinician>> searchClinicianByLastName(@RequestParam String lastName) {

@@ -1,9 +1,5 @@
 function deregisterStaff(staff) {
-    var loggedIn = sessionStorage.getItem('loggedIn');
-        if (loggedIn !== 'true') {
-            // User not logged in, so redirect to the login page
-            window.location.href = 'login.html';
-    }
+
 
     fetch('http://localhost:8080/staff/deregister', {
         method: 'POST',
@@ -29,6 +25,11 @@ function deregisterStaff(staff) {
 
 
 document.addEventListener("DOMContentLoaded", function() {
+    var loggedIn = sessionStorage.getItem('loggedIn');
+        if (loggedIn !== 'true') {
+            // User not logged in, so redirect to the login page
+            window.location.href = 'login.html';
+    }
     // Send a GET request to get the list of staff
     fetch('http://localhost:8080/staff', {
         method: 'GET',

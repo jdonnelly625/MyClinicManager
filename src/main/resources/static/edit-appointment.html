@@ -1,21 +1,36 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Appointment Registration Page</title>
+  <title>Appointment Edit Page</title>
   <link rel="stylesheet" type="text/css" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
-  <script src="make-appointment.js"></script>
+  <script src="edit-appointment.js"></script>
 </head>
-<body class = "makeBody">
+
+<body class="makeBody">
 <div class="appointment-container">
-  <div class = "patient-list">
-    <h2>Appointment Registration</h2>
-    <form id="registrationForm" class="appointment-registration-form">
+
+  <div class="patient-list">
+    <h2>Appointment Edit</h2>
+    <div class = "edit-info">
+      <div id="currentPatient">Current Patient: </div>
+      <div id="currentClinician">Current Clinician: </div>
+      <div id="currentDateTime">Date and Time: </div>
+      <div id="currentStatus">Status: </div>
+    </div>
+    <div class = "edit-info">
+      <div>Choose one or more appointment fields to change below: </div>
+    </div>
+
+    <form id="editForm" class="appointment-registration-form">
+      <!-- Patient Info -->
       <div class="input-group">
         <label for="patientLastName" class="appointment-label">Search patient by Last Name</label>
         <input type="text" id="patientLastName" name="patientLastName" placeholder="Last Name">
         <button type="button" id="searchPatient">Search</button>
       </div>
+
       <table id="patientList">
         <thead>
         <tr>
@@ -27,10 +42,10 @@
         </tr>
         </thead>
         <tbody>
-
         </tbody>
       </table>
 
+      <!-- Clinician Info -->
       <div class="input-group">
         <label for="clinicianLastName" class="appointment-label">Search clinician by Last Name</label>
         <input type="text" id="clinicianLastName" name="clinicianLastName" placeholder="Last Name">
@@ -48,19 +63,31 @@
         </tr>
         </thead>
         <tbody>
-
         </tbody>
       </table>
 
+      <!-- Date and Time Info -->
       <div class="input-group">
         <label for="datetime" class="appointment-label">Date and Time</label>
         <input type="datetime-local" id="datetime" name="datetime">
       </div>
-      <button type="submit" class = "btn">Submit</button>
-      <button id="appointmentListButton" class = "btn">Appointment List</button>
+
+      <!-- Status Info -->
+      <div class="input-group">
+        <label for="status" class="appointment-label">Status</label>
+        <select id="status">
+          <option value=""></option>
+          <option value="UPCOMING">UPCOMING</option>
+          <option value="CANCELLED">CANCELLED</option>
+        </select>
+      </div>
+
+      <!-- Submit and Navigate to Appointment List -->
+      <button type="submit" class="btn">Submit</button>
+      <button id="appointmentListButton" class="btn">Appointment List</button>
     </form>
   </div>
 </div>
-<script src="registration.js"></script>
 </body>
+
 </html>

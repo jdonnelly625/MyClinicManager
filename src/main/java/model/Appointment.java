@@ -75,5 +75,19 @@ public class Appointment {
         return clinician;
     }
 
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+
+    }
+
+    public void setClinician(Clinician clinician) {
+        this.clinician = clinician;
+
+    }
+
+    public void setAppointmentTime(LocalDateTime time) {
+        this.appointmentTime = time;
+    }
+
 
 }

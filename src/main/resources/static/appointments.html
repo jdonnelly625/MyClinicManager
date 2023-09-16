@@ -10,14 +10,49 @@
 <div class="table-container">
   <div class="patient-list">
     <h2>Registered Appointments</h2>
+    <div class="filter-section">
+      <form id="filterForm">
+      <!-- Filter by Clinician -->
+        <div class="input-group">
+          <label for="clinicianFilter">Filter by Clinician:</label>
+          <select id="clinicianFilter">
+            <option value="">Any</option>
+            <!-- This dropdown will be populated dynamically based on available clinicians -->
+          </select>
+        </div>
+
+        <!-- Filter by Status -->
+        <div class="input-group">
+          <label for="statusFilter">Status:</label>
+          <select id="statusFilter">
+            <option value="">Any</option>
+            <option value="upcoming">Upcoming</option>
+            <option value="completed">Completed</option>
+            <option value="cancelled">Cancelled</option>
+            <!-- Add more status options if necessary -->
+          </select>
+        </div>
+
+        <!-- Filter by Date Range -->
+        <div class="input-group">
+          <label for="startDate">Date Range:</label>
+          Start: <input type="datetime-local" id="startDate" name="startDate">
+          End: <input type="datetime-local" id="endDate" name="endDate">
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit">Search</button>
+      </form>
+    </div>
     <table id="appointmentTable">
       <thead>
       <tr>
-        <th>Appointment ID</th>
+        <th>ID</th>
+        <th>Date</th>
         <th>Time</th>
+        <th>Patient</th>
+        <th>Clinician</th>
         <th>Status</th>
-        <th>Clinician ID</th>
-        <th>Patient ID</th>
       </tr>
       </thead>
       <tbody>

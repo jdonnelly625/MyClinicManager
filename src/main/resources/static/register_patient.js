@@ -50,6 +50,10 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Error:', error);
         });
     });
+
+    document.getElementById('patientListButton').addEventListener('click', function() {
+            window.location.href = 'patient-list.html';
+    });
 });
 
 

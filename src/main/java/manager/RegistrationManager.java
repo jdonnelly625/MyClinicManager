@@ -10,8 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
-import java.util.List;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 @Service
 public class RegistrationManager {
@@ -151,5 +152,72 @@ public class RegistrationManager {
     public Clinician getClinicianById(String clinicianId) {
 
         return staffDirectory.getClinicianById(clinicianId);
+    }
+
+    /**
+     * Provides a more user friendly key value pairing of appointment information for all appointments
+     * @return List a list of maps with appointment key value pairs formatted for tables/client readability
+     */
+    public List<Map<String,String>> getAppointmentInfoMap(List<Appointment> appointmentList) {
+
+
+        List<Map<String, String>> appointments = new ArrayList<>();
+
+        for(Appointment a : appointmentList) {
+            HashMap<String, String> keys = new HashMap<>();
+            keys.put("id", String.valueOf(a.getId()));
+            LocalDateTime localDateTime = a.getAppointmentTime();
+            String day = localDateTime.format(DateTimeFormatter.ofPattern("M/d/yyyy"));
+            keys.put("day", day);
+            String time = localDateTime.format(DateTimeFormatter.ofPattern("h:mm a"));
+            keys.put("time", time);
+            keys.put("patient", a.getPatient().getFirstName() + " " + a.getPatient().getLastName());
+            keys.put("clinician", a.getClinician().getFirstName() + " " + a.getClinician().getLastName());
+            keys.put("status", a.getStatus().name());
+            appointments.add(keys);
+
+        }
+        return appointments;
+
+
+    }
+
+    public Map<String,String> getAppointmentInfoMapSingular(Appointment a) {
+
+
+        HashMap<String, String> keys = new HashMap<>();
+        keys.put("id", String.valueOf(a.getId()));
+        LocalDateTime localDateTime = a.getAppointmentTime();
+        String day = localDateTime.format(DateTimeFormatter.ofPattern("M/d/yyyy"));
+        keys.put("day", day);
+        String time = localDateTime.format(DateTimeFormatter.ofPattern("h:mm a"));
+        keys.put("time", time);
+        keys.put("patient", a.getPatient().getFirstName() + " " + a.getPatient().getLastName());
+        keys.put("clinician", a.getClinician().getFirstName() + " " + a.getClinician().getLastName());
+        keys.put("status", a.getStatus().name());
+
+        return keys;
+
+
+    }
+
+    public List<Clinician> getAllClinicians() {
+        return staffDirectory.getAllClinicians();
+    }
+
+    public List<Appointment> filterAppointments(String clinicianId, String status, LocalDateTime dateStart, LocalDateTime dateEnd) {
+        return appointmentDirectory.getFilteredAppointments(clinicianId, status, dateStart, dateEnd);
+    }
+
+
+
+    public Appointment getAppointmentById(Long appointmentId) {
+
+        return appointmentDirectory.getAppointmentById(appointmentId);
+    }
+
+    public Appointment updateAppointment(Long appointmentId, LocalDateTime datetime, Patient patient, Clinician clinician, String status) {
+
+        return appointmentDirectory.updateAppointment(appointmentId, datetime, patient, clinician, status);
     }
 }
