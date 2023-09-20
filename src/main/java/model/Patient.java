@@ -17,9 +17,9 @@ import java.util.Set;
 @Table(name = "patients")
 public class Patient extends User {
 
-//    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
+//    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
 //    @JsonBackReference
-//    private Set<Appointment> appointments;
+//    private List<Appointment> appointments;
 
 
     /**
@@ -41,5 +41,7 @@ public class Patient extends User {
     public Patient(String firstName, String lastName, String email, String password) {
         super(firstName, lastName, email, password);
     }
+
+
 }
 

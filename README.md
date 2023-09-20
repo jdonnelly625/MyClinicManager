@@ -1,9 +1,10 @@
 # MyClinicManager
-A hands-on, work in progress CRUD application developed out of a self-driven learning initiative. Seamlessly integrating cutting-edge backend engineering technologies with a user-friendly frontend, it serves as a comprehensive tool for managing daily healthcare clinic operations. The application supports the maintenance, editing, and utilization of a database containing patient, staff, and appointment information.
+A hands-on, **work in progress** CRUD application developed out of a self-driven learning initiative. Seamlessly integrating cutting-edge backend engineering technologies with a user-friendly frontend, it serves as a comprehensive tool for managing daily healthcare clinic operations. The application supports the maintenance, editing, and utilization of a database containing patient, staff, and appointment information.
 
-**Link to project video demo:** 
+**Link to project gallery:** 
 
-![alt tag]() image to go here of dashboard
+[Imgur Gallery](https://imgur.com/a/mbNrSuj)
+
 
 ## How It's Made:
 

@@ -1,11 +1,13 @@
 package directories;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import model.Administrator;
 import model.Clinician;
 import model.Staff;
 import org.springframework.stereotype.Service;
 import repository.AdministratorRepository;
+import repository.AppointmentRepository;
 import repository.ClinicianRepository;
 
 import java.util.LinkedList;
@@ -13,15 +15,18 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class StaffDirectory {
 
     private final ClinicianRepository clinicianRepository;
     private final AdministratorRepository administratorRepository;
+    private final AppointmentRepository appointmentRepository;
 
-    public StaffDirectory(ClinicianRepository clinicianRepository, AdministratorRepository administratorRepository) {
+    public StaffDirectory(ClinicianRepository clinicianRepository, AdministratorRepository administratorRepository, AppointmentRepository appointmentRepository) {
 
         this.clinicianRepository = clinicianRepository;
         this.administratorRepository = administratorRepository;
+        this.appointmentRepository = appointmentRepository;
     }
 
 
@@ -93,6 +98,7 @@ public class StaffDirectory {
         Optional<Clinician> clinician = clinicianRepository.findById(staffId);
 
         if (clinician.isPresent()) {
+            appointmentRepository.deleteByClinician(clinician.get());
             clinicianRepository.deleteById(staffId);
             return clinician.get();
         }

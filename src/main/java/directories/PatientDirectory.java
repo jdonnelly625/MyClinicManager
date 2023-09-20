@@ -1,17 +1,23 @@
 package directories;
 
+import jakarta.transaction.Transactional;
 import model.Patient;
 import org.springframework.stereotype.Service;
+import repository.AppointmentRepository;
 import repository.PatientRepository;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class PatientDirectory {
     private final PatientRepository patientRepository;
+    private final AppointmentRepository appointmentRepository;
 
-    public PatientDirectory(PatientRepository patientRepository) {
+    public PatientDirectory(PatientRepository patientRepository, AppointmentRepository appointmentRepository) {
+
         this.patientRepository = patientRepository;
+        this.appointmentRepository = appointmentRepository;
     }
 
 
@@ -27,6 +33,7 @@ public class PatientDirectory {
     }
 
     public void removePatient(Patient patient) {
+        appointmentRepository.deleteByPatient(patient);
         patientRepository.delete(patient);
     }
 

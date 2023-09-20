@@ -1,6 +1,8 @@
 package repository;
 
 import model.Appointment;
+import model.Clinician;
+import model.Patient;
 import model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -26,6 +28,10 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
     List<Appointment> findByAppointmentTimeBetweenOrderByAppointmentTimeAsc(LocalDateTime start, LocalDateTime end);
 
     List<Appointment> findByClinicianIdAndStatusAndAppointmentTimeBetweenOrderByAppointmentTimeAsc(String clinicianId, Appointment.Status status, LocalDateTime dateStart, LocalDateTime dateEnd);
+
+    void deleteByPatient(Patient patient);
+
+    void deleteByClinician(Clinician clinician);
 }
 
 

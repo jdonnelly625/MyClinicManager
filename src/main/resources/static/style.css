@@ -196,4 +196,31 @@ body {
     font-family: 'Poppins', sans-serif; /* Use Poppins font */
 }
 
+.login-form {
+    background-color: rgba(109, 154, 237, 0.498);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    width: 300px;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.login-form button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #5c6bc0;
+    color: white;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif; /* Use Poppins font */
+}
+
 
