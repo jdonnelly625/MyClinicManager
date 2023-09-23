@@ -13,6 +13,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Represents a patient in the system, a type of User that will have limited permissions (work in progress) to access their
+ * appointments and providers through the clinic manager system.
+ *
+ * This is an Entity that corresponds to the "patients" table in the database.
+ *
+ */
 @Entity
 @Table(name = "patients")
 public class Patient extends User {

@@ -5,6 +5,13 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
+/**
+ * Represents an appointment in the system, storing relevant fields and implementing relevant methods to access
+ * appointment information.
+ *
+ * This is an Entity that corresponds to the "appointments" table in the database.
+ *
+ */
 @Entity
 @Table(name = "appointments")
 public class Appointment {
@@ -13,7 +20,9 @@ public class Appointment {
     private Long id;
 
 
-
+    /**
+     * Uses enum to determine the status of the appointment which can be manipulated.
+     */
     public enum Status {
         UPCOMING,
         CANCELLED,

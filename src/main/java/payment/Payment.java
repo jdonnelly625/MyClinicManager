@@ -1,7 +1,7 @@
 package payment;
 
 /**
- * Code for this package is based on Spring Start in Action chapter 11.
+ * Code for this package is based on Spring Start in Action chapter 11. Creates a Payment class for payment transactions.
  */
 public class Payment {
     private String id;

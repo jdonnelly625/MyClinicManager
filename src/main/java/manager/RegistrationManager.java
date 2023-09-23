@@ -14,6 +14,25 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+/**
+ * The central service class responsible for managing operations associated with the registration and management
+ * of users (patients, staff members) and appointments in the ClinicRegistrationApplication system.
+ *
+ * To promote decoupling and maintainability, the manager delegates responsibilities to specialized classes
+ * like directories (AppointmentDirectory, PatientDirectory, etc.) for more concrete
+ * implementations. This design approach ensures that the RegistrationManager focuses on higher-level
+ * orchestration and leaves the intricacies of each domain to its designated handler.
+ *
+ *
+ * For demo purposes, the manager initializes a default administrator with preset credentials
+ * to allow logging in to the system. (username: admin, password: adminPassword).
+ *
+ * While the class caters to a variety of functionalities like registration, querying, and updating,
+ * it also provides convenience methods to represent appointment details in a user-friendly map structure,
+ * suitable for rendering on the client side.
+ *
+ * @author Joshua Donnelly
+ */
 @Service
 public class RegistrationManager {
 
@@ -182,6 +201,10 @@ public class RegistrationManager {
 
     }
 
+    /**
+     * Provides a more user friendly key value pairing of a singular appointment information.
+     * @return a Map with appointment key value pairs formatted for tables/client readability
+     */
     public Map<String,String> getAppointmentInfoMapSingular(Appointment a) {
 
 
@@ -205,11 +228,17 @@ public class RegistrationManager {
         return staffDirectory.getAllClinicians();
     }
 
+    /**
+     * Filters and returns appointments based on criteria passed in as parameters.
+     * @param clinicianId the id of the clinician
+     * @param status the status of the appointment
+     * @param dateStart the start date of the appointment
+     * @param dateEnd the end date of the appointment
+     * @return the list of filtered appointments
+     */
     public List<Appointment> filterAppointments(String clinicianId, String status, LocalDateTime dateStart, LocalDateTime dateEnd) {
         return appointmentDirectory.getFilteredAppointments(clinicianId, status, dateStart, dateEnd);
     }
-
-
 
     public Appointment getAppointmentById(Long appointmentId) {
 

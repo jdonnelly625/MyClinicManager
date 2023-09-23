@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 
 /**
- * Code for this package is based on Spring Start in Action chapter 11.
+ * Code for this package is based on Spring Start in Action chapter 11 for learning purposes. Will build into Proxy to
+ * handle post requests for payment transactions.
  */
 @FeignClient(name = "payments",
             url = "${name.service.url}") //defined in application.properties

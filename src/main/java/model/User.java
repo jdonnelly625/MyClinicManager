@@ -9,9 +9,20 @@ import java.util.Objects;
 import java.util.Random;
 
 /**
- * An abstract class to store information and methods for users of the ClinicRegistrationApplication system.
- * @author Joshua Donnelly
+ * Represents a user in the ClinicRegistrationApplication system. This abstract class serves as the foundational entity
+ * for all types of users and provides basic attributes like name, email, and password.
  *
+ * A User has a unique identifier generated upon creation. This identifier along with other attributes like first name,
+ * last name, email, and a hashed password forms the core information of any user in the system.
+ *
+ * The hashing mechanism provided for the password is a basic SHA-256 hashing algorithm without the usage of salt (for now).
+ *
+ * Each specific type of user (e.g., staff, administrator) that needs to be represented in the system should extend
+ * this class to inherit these common attributes and behaviors. The corresponding database structure uses the
+ * TABLE_PER_CLASS inheritance strategy so that each subclass will have its own dedicated table, separate
+ * from the 'users' table with all information not just unique fields.
+ *
+ * @author Joshua Donnelly
  */
 @Entity
 @Table(name = "users")
@@ -106,7 +117,7 @@ public abstract class User {
     }
 
     /**
-     * Basic hashing algorithm without using salt
+     * Basic SHA-256 hashing algorithm without using salt
      * @param pw
      * @return
      */

@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.UUID;
 
 /**
- * Code for this package is based on Spring Start in Action chapter 11 and for learning purposes.
+ * Code for this package is based on Spring Start in Action chapter 11 and for learning purposes.  Will build into Controller to
+ * handle post requests for payment transactions.
  */
 @RestController
 public class PaymentController {

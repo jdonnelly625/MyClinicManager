@@ -10,6 +10,14 @@ import jakarta.persistence.Table;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Represents a clinician in the system, a specialized type of Staff with additional job-related attributes and behaviors.
+ *
+ * Clinicians are more specialized to have unique fields and full access to information about patients.
+ * Implements FullPatientInfoAccess to determine access level to certain patient records. Certain Staff subclasses may implement more permissions.
+ * This is an Entity that corresponds to the "clinicians" table in the database.
+ *
+ */
 @Entity
 @Table(name = "clinicians")
 public class Clinician extends Staff implements FullPatientInfoAccess {
@@ -31,7 +39,6 @@ public class Clinician extends Staff implements FullPatientInfoAccess {
      *
      * @param firstName of user
      * @param lastName  of user
-     * @param id        user's id
      * @param email     user's email
      * @param password  hashed password of user
      * @param jobTitle the job title

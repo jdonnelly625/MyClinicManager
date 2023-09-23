@@ -10,6 +10,12 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * This repository provides CRUD operations for Appointment entities, including find operations filtered by fields and ordered by datetime.
+ * It extends the JPARepository to inherit standard database operations and leverage the power of method naming conventions
+ * for default implementations of common database operations. However, custom queries can be added with @Query tag.
+ *
+ */
 @Repository
 public interface AppointmentRepository extends JpaRepository<Appointment, Long> {
 
