@@ -1,6 +1,7 @@
 package model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -28,16 +29,26 @@ import java.util.Random;
 @Table(name = "users")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class User {
-    /** User's first name. */
+
+    // User's first name.
+    @NotBlank(message = "First name cannot be blank")
     private String firstName;
-    /** User's last name. */
+
+    // User's last name.
+    @NotBlank(message = "Last name cannot be blank")
     private String lastName;
+
+    // User's id.
     @Id
-    /** User's id. */
     private String id;
-    /** User's email. */
+
+    // User's email.
+    @NotBlank(message = "Email is required")
+    @Column(unique = true)
     private String email;
-    /** User's password. */
+
+    // User's password.
+    @NotBlank(message = "Password is required")
     private String password;
 
     /**

@@ -4,6 +4,7 @@ import directories.AppointmentDirectory;
 import directories.PatientDirectory;
 import directories.StaffDirectory;
 import jakarta.annotation.PostConstruct;
+import jakarta.validation.Valid;
 import model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -132,9 +133,27 @@ public class RegistrationManager {
         }
     }
 
-    public Appointment makeAppointment(Appointment appointment) {
+    public Appointment makeAppointment(@Valid Appointment appointment) {
         appointmentDirectory.makeAppointment(appointment);
         return appointment;
+    }
+
+    public Appointment convertAppointmentData(Map<String, Object> appointmentData) {
+        String patientId = (String) appointmentData.get("patientId");
+        String clinicianId = (String) appointmentData.get("clinicianId");
+        LocalDateTime datetime = LocalDateTime.parse(appointmentData.get("datetime").toString());
+
+        Patient patient = this.getPatientById(patientId);
+        Clinician clinician = this.getClinicianById(clinicianId);
+
+        if (patient == null) {
+            throw new IllegalArgumentException("Patient not found");
+        }
+        if(clinician == null) {
+            throw new IllegalArgumentException("Clinician not found");
+        }
+
+        return new Appointment(datetime, patient, clinician);
     }
 
     public List<Appointment> getAppointments() {
@@ -245,8 +264,17 @@ public class RegistrationManager {
         return appointmentDirectory.getAppointmentById(appointmentId);
     }
 
-    public Appointment updateAppointment(Long appointmentId, LocalDateTime datetime, Patient patient, Clinician clinician, String status) {
+    public Appointment updateAppointment(Long appointmentId, String datetime, String patientId, String clinicianId, String status) {
+        LocalDateTime parsedDateTime = datetime != null && !datetime.trim().isEmpty()
+                ? LocalDateTime.parse(datetime)
+                : null;
 
-        return appointmentDirectory.updateAppointment(appointmentId, datetime, patient, clinician, status);
+        Patient patient = patientId != null ? getPatientById(patientId) : null;
+        Clinician clinician = clinicianId != null ? getClinicianById(clinicianId) : null;
+
+        if(status != null && status.isEmpty()) {
+            status = null;
+        }
+        return appointmentDirectory.updateAppointment(appointmentId, parsedDateTime, patient, clinician, status);
     }
 }

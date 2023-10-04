@@ -122,6 +122,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         } catch (error) {
             console.error('There was an error fetching filtered appointments:', error);
+            alert('There was an error fetching filtered appointments');
         }
     });
 
@@ -131,6 +132,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     document.getElementById('newAppointment').addEventListener('click', function() {
-            window.location.href = 'make-appointment.html';
+        window.location.href = 'make-appointment.html';
     });
 });

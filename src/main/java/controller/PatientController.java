@@ -1,5 +1,6 @@
 package controller;
 
+import jakarta.validation.Valid;
 import manager.RegistrationManager;
 import model.Patient;
 import model.User;
@@ -22,16 +23,10 @@ public class PatientController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Patient> registerPatient(@RequestBody Patient patient) {
-        try{
-            Patient registeredPatient = registrationManager.registerPatient(patient);
-            return new ResponseEntity<>(registeredPatient, HttpStatus.CREATED);
-        }
-        catch(Exception e) {
-            e.printStackTrace();
-            System.out.println("Registration patient error");
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public ResponseEntity<Patient> registerPatient(@Valid @RequestBody Patient patient) {
+
+        Patient registeredPatient = registrationManager.registerPatient(patient);
+        return new ResponseEntity<>(registeredPatient, HttpStatus.CREATED);
 
     }
 

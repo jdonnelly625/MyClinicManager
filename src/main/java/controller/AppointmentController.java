@@ -1,5 +1,6 @@
 package controller;
 
+import dto.AppointmentUpdateRequest;
 import manager.RegistrationManager;
 import model.Appointment;
 import model.Clinician;
@@ -27,32 +28,17 @@ public class AppointmentController {
 
     @PostMapping("/schedule")
     public ResponseEntity<Map<String, Object>> makeAppointment(@RequestBody Map<String, Object> appointmentData) {
-        String patientId = (String) appointmentData.get("patientId");
-        String clinicianId = (String) appointmentData.get("clinicianId");
-        LocalDateTime datetime = LocalDateTime.parse(appointmentData.get("datetime").toString());
 
-        Patient patient = registrationManager.getPatientById(patientId);
-        Clinician clinician = registrationManager.getClinicianById(clinicianId);
+        //Converts Map into Appointment
+        Appointment appointment = registrationManager.convertAppointmentData(appointmentData);
+        //Makes the appointment
+        registrationManager.makeAppointment(appointment);
+        Map<String, Object> response = new HashMap<>();
+        response.put("success", true);
+        response.put("message", "Appointment created successfully.");
+        response.put("appointment", appointment);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
 
-        if (patient == null || clinician == null) {
-            return ResponseEntity.badRequest().body(Map.of("error", "Patient or Clinician not found"));
-        }
-
-        Appointment appointment = new Appointment(datetime, patient, clinician);
-
-        try {
-            registrationManager.makeAppointment(appointment);
-            Map<String, Object> response = new HashMap<>();
-            response.put("success", true);
-            response.put("message", "Appointment created successfully.");
-            response.put("appointment", appointment);
-            return new ResponseEntity<>(response, HttpStatus.CREATED);
-        } catch (Exception e) {
-            Map<String, Object> response = new HashMap<>();
-            response.put("success", false);
-            response.put("message", "Failed to create appointment.");
-            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
     }
 
     @GetMapping
@@ -60,8 +46,6 @@ public class AppointmentController {
 
 
         List<Map<String, String>> appointments = registrationManager.getAppointmentInfoMap(registrationManager.getAppointments());
-
-
 
         return new ResponseEntity<>(appointments, HttpStatus.OK);
     }
@@ -81,72 +65,35 @@ public class AppointmentController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Map<String, Object>> updateAppointment(@PathVariable(value = "id") Long appointmentId,
-                                                         @RequestBody Map<String, Object> appointmentData) {
-        String patientId = (String) appointmentData.get("patientId");
-        String clinicianId = (String) appointmentData.get("clinicianId");
-        LocalDateTime datetime;
-        Object datetimeObj = appointmentData.get("datetime");
-        if (datetimeObj == null || datetimeObj.toString().trim().isEmpty()) {
-            datetime = null;
-        } else {
-            datetime = LocalDateTime.parse(datetimeObj.toString());
-        }
+    public ResponseEntity<Map<String, Object>> updateAppointment(
+            @PathVariable(value = "id") Long appointmentId,
+            @RequestBody AppointmentUpdateRequest request) {
 
-        String status = (String) appointmentData.get("status");
-        if(status == "") status = null;
+        Appointment updatedAppointment = registrationManager.updateAppointment(
+                appointmentId,
+                request.getDatetime(),
+                request.getPatientId(),
+                request.getClinicianId(),
+                request.getStatus()
+        );
 
-        Patient patient;
-        if(patientId == null) {
-            patient = null;
-        }
-        else {
-            patient = registrationManager.getPatientById(patientId);
-        }
+        Map<String, Object> response = new HashMap<>();
+        response.put("success", true);
+        response.put("message", "Appointment updated successfully.");
+        response.put("appointment", updatedAppointment);
 
-        Clinician clinician;
-        if(clinicianId == null) {
-            clinician = null;
-        }
-        else {
-            clinician = registrationManager.getClinicianById(clinicianId);
-        }
-
-
-        try {
-            Appointment updatedAppointment = registrationManager.updateAppointment(appointmentId, datetime, patient, clinician, status);
-            Map<String, Object> response = new HashMap<>();
-            response.put("success", true);
-            response.put("message", "Appointment updated successfully.");
-            response.put("appointment", updatedAppointment);
-            return new ResponseEntity<>(response, HttpStatus.CREATED);
-        } catch (Exception e) {
-            Map<String, Object> response = new HashMap<>();
-            response.put("success", false);
-            response.put("message", "Failed to create appointment.");
-            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
+
     @GetMapping("/byId/{id}")
     public ResponseEntity<Map<String, String>> getAppointmentById(@PathVariable(value = "id") Long appointmentId) {
-        try {
-            Appointment appt = registrationManager.getAppointmentById(appointmentId);
-            if(appt == null) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
 
-            Map<String, String> map = registrationManager.getAppointmentInfoMapSingular(appt);
-            return new ResponseEntity<>(map, HttpStatus.OK);
+        Appointment appt = registrationManager.getAppointmentById(appointmentId);
 
-        } catch (IllegalArgumentException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        Map<String, String> map = registrationManager.getAppointmentInfoMapSingular(appt);
+        return new ResponseEntity<>(map, HttpStatus.OK);
+
     }
-
-
 
 
 }

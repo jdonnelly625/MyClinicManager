@@ -2,6 +2,7 @@ package model;
 
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
@@ -28,7 +29,7 @@ public class Appointment {
         CANCELLED,
         COMPLETED
     }
-
+    @NotNull(message = "Appointment time cannot be null.")
     private LocalDateTime appointmentTime;
 
     @Enumerated(EnumType.STRING)
@@ -40,12 +41,14 @@ public class Appointment {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "patient_id")
     @JsonManagedReference
+    @NotNull(message = "Patient cannot be null")
     private Patient patient;
 
     /** Many appointments can be associated with a single clinician */
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "clinician_id")
     @JsonManagedReference
+    @NotNull(message = "Clinician cannot be null")
     private Clinician clinician;
 
     /** Default constructor */
