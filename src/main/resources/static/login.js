@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
         };
 
         // Send a POST request
-        fetch('/login', {
+        fetch('/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 alert('Login successful! Welcome, ' + responseData.name + '!');
                 sessionStorage.setItem('loggedIn', 'true');
                 sessionStorage.setItem('username', responseData.name);
-                window.location.href = 'dashboard.html';
+                window.location.href = 'dashboard';
             } else {
                 // Login failed
                 alert('Login failed. ' + (responseData.message || 'Please check your username and password.'));

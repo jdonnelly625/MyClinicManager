@@ -9,6 +9,7 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/login").setViewName("forward:/login.html");
+        registry.addViewController("/").setViewName("forward:/login.html");
         registry.addViewController("/dashboard").setViewName("forward:/dashboard.html");
         registry.addViewController("/edit-appointment").setViewName("forward:/edit-appointment.html");
         registry.addViewController("/make-appointment").setViewName("forward:/make-appointment.html");
@@ -17,5 +18,6 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/register_patient").setViewName("forward:/register_patient.html");
         registry.addViewController("/staff-dashboard").setViewName("forward:/staff-dashboard.html");
         registry.addViewController("/staff-list").setViewName("forward:/staff-list.html");
+        registry.addViewController("/appointments").setViewName("forward:/appointments.html");
     }
 }

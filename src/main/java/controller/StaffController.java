@@ -15,7 +15,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 @RestController
-@RequestMapping("api/staff")
+@RequestMapping("/api/staff")
 public class StaffController {
 
     private final RegistrationManager registrationManager;

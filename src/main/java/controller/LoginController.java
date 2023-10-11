@@ -22,7 +22,7 @@ public class LoginController {
     }
 
 
-    @PostMapping("api/login")
+    @PostMapping("/api/login")
     public ResponseEntity<?> login(@RequestBody Map<String, String> loginData) {
         String username = loginData.get("username");
         String password = loginData.get("password");
@@ -52,9 +52,6 @@ public class LoginController {
         }
     }
 
-    @RequestMapping("/")
-    public String defaultAfterLogin(){
-        return "redirect:/login";
-    }
+
 
 }

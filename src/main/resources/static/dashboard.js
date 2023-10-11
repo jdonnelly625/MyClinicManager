@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('welcome').innerHTML = 'Welcome, ' + name;
 
     // Send a GET request to get the list of patients
-    fetch('/patients', {
+    fetch('/api/patients', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -43,20 +43,20 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     document.getElementById('patientListButton').addEventListener('click', function() {
-        window.location.href = 'patient-list.html';
+        window.location.href = 'patient-list';
     });
 
     document.getElementById('logout').addEventListener('click', function() {
             sessionStorage.clear();
-            window.location.href = 'login.html';
+            window.location.href = 'login';
     });
 
     document.getElementById('manageAppointments').addEventListener('click', function() {
 
-        window.location.href = 'appointments.html';
+        window.location.href = 'appointments';
     });
 
     document.getElementById('viewStaff').addEventListener('click', function() {
-        window.location.href = 'staff-list.html';
+        window.location.href = 'staff-list';
     });
 });

@@ -1,7 +1,7 @@
 function deregisterStaff(staff) {
 
 
-    fetch('/staff/deregister', {
+    fetch('/api/staff/deregister', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -16,7 +16,7 @@ function deregisterStaff(staff) {
     })
     .then(deregisteredStaff => {
         console.log('Staff deregistered:', deregisteredStaff);
-        window.location.href = '/staff-list.html';
+        window.location.href = '/staff-list';
     })
     .catch(error => {
         console.error('Error:', error);
@@ -28,10 +28,10 @@ document.addEventListener("DOMContentLoaded", function() {
     var loggedIn = sessionStorage.getItem('loggedIn');
         if (loggedIn !== 'true') {
             // User not logged in, so redirect to the login page
-            window.location.href = 'login.html';
+            window.location.href = 'login';
     }
     // Send a GET request to get the list of staff
-    fetch('/staff', {
+    fetch('/api/staff', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -81,10 +81,10 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     document.getElementById('registerStaff').addEventListener('click', function() {
-        window.location.href = 'register-staff.html';
+        window.location.href = 'register-staff';
     });
 
     document.getElementById('dashboardButton').addEventListener('click', function() {
-        window.location.href = 'dashboard.html';
+        window.location.href = 'dashboard';
     });
 });

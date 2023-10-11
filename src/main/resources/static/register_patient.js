@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var loggedIn = sessionStorage.getItem('loggedIn');
     if (loggedIn !== 'true') {
         // User not logged in, so redirect to the login page
-        window.location.href = 'login.html';
+        window.location.href = 'login';
     }
     const registrationForm = document.getElementById('registrationForm');
 
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
             appointments: null
         };
 
-        fetch('/patients/register', {
+        fetch('/api/patients/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(data => {
             console.log('Success:', data);
-            window.location.href = '/patient-list.html';
+            window.location.href = '/patient-list';
         })
         .catch((error) => {
             console.error('Error:', error);
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     document.getElementById('patientListButton').addEventListener('click', function() {
-            window.location.href = 'patient-list.html';
+            window.location.href = 'patient-list';
     });
 });
 

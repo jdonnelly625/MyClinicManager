@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var loggedIn = sessionStorage.getItem('loggedIn');
     if (loggedIn !== 'true') {
         // User not logged in, so redirect to the login page
-        window.location.href = 'login.html';
+        window.location.href = 'login';
     }
     const registrationForm = document.getElementById('registrationForm');
 
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
             role: selectedRole
         };
 
-        fetch('/staff/register', {
+        fetch('/api/staff/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(data => {
             console.log('Success:', data);
-            window.location.href = 'staff-list.html';
+            window.location.href = 'staff-list';
         })
         .catch((error) => {
             console.error('Error:', error);
@@ -55,6 +55,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     document.getElementById('staffListButton').addEventListener('click', function() {
-        window.location.href = 'staff-list.html';
+        window.location.href = 'staff-list';
     });
 });

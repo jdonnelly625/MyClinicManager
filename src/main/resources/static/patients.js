@@ -2,10 +2,10 @@ function deregisterPatient(patient) {
     var loggedIn = sessionStorage.getItem('loggedIn');
         if (loggedIn !== 'true') {
             // User not logged in, so redirect to the login page
-            window.location.href = 'login.html';
+            window.location.href = 'login';
     }
 
-    fetch('/patients/deregister', {
+    fetch('/api/patients/deregister', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -20,7 +20,7 @@ function deregisterPatient(patient) {
     })
     .then(deregisteredPatient => {
         console.log('Patient deregistered:', deregisteredPatient);
-        window.location.href = '/patient-list.html';
+        window.location.href = '/patient-list';
     })
     .catch(error => {
         console.error('Error:', error);
@@ -30,7 +30,7 @@ function deregisterPatient(patient) {
 
 document.addEventListener("DOMContentLoaded", function() {
     // Send a GET request to get the list of patients
-    fetch('http://localhost:8080/patients', {
+    fetch('/api/patients', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -76,10 +76,10 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     document.getElementById('backButton').addEventListener('click', function() {
-        window.location.href = 'register_patient.html';
+        window.location.href = 'register_patient';
     });
 
     document.getElementById('dashboardButton').addEventListener('click', function() {
-            window.location.href = 'dashboard.html';
-        });
+        window.location.href = 'dashboard';
+    });
 });

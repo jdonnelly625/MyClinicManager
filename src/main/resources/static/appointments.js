@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
             var cell7 = row.insertCell(6);
 
             var editLink = document.createElement('a');
-            editLink.href = 'edit-appointment.html?id=' + appointment.id;
+            editLink.href = 'edit-appointment?id=' + appointment.id;
             editLink.innerHTML = 'Edit';
             cell7.appendChild(editLink);
 
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Fetching initial list of appointments
-    fetch('/appointments', {
+    fetch('/api/appointments', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
         console.error('Error:', error);
     });
 
-    fetch('/staff/clinicianNames', {
+    fetch('/api/staff/clinicianNames', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function() {
             endDate: endDate
         });
 
-        const url = 'appointments/getFilteredAppointments?' + urlParams.toString();
+        const url = '/api/appointments/getFilteredAppointments?' + urlParams.toString();
 
         try {
             const response = await fetch(url);
@@ -128,10 +128,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     document.getElementById('dashboardButton').addEventListener('click', function() {
-        window.location.href = 'dashboard.html';
+        window.location.href = 'dashboard';
     });
 
     document.getElementById('newAppointment').addEventListener('click', function() {
-        window.location.href = 'make-appointment.html';
+        window.location.href = 'make-appointment';
     });
 });

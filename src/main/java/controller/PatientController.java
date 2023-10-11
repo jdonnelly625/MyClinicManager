@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/patients")
+@RequestMapping("/api/patients")
 public class PatientController {
 
     private final RegistrationManager registrationManager;
