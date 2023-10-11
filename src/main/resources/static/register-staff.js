@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
             role: selectedRole
         };
 
-        fetch('http://localhost:8080/staff/register', {
+        fetch('/staff/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

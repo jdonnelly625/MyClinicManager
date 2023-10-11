@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
             appointments: null
         };
 
-        fetch('http://localhost:8080/patients/register', {
+        fetch('/patients/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

@@ -5,7 +5,7 @@ function deregisterPatient(patient) {
             window.location.href = 'login.html';
     }
 
-    fetch('http://localhost:8080/patients/deregister', {
+    fetch('/patients/deregister', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

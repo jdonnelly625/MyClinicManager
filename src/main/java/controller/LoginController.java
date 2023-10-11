@@ -6,10 +6,7 @@ import model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +22,7 @@ public class LoginController {
     }
 
 
-    @PostMapping("/login")
+    @PostMapping("api/login")
     public ResponseEntity<?> login(@RequestBody Map<String, String> loginData) {
         String username = loginData.get("username");
         String password = loginData.get("password");
@@ -53,6 +50,11 @@ public class LoginController {
                     .status(HttpStatus.UNAUTHORIZED)
                     .body(errorDetails);
         }
+    }
+
+    @RequestMapping("/")
+    public String defaultAfterLogin(){
+        return "redirect:/login";
     }
 
 }

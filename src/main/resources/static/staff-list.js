@@ -1,7 +1,7 @@
 function deregisterStaff(staff) {
 
 
-    fetch('http://localhost:8080/staff/deregister', {
+    fetch('/staff/deregister', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
             window.location.href = 'login.html';
     }
     // Send a GET request to get the list of staff
-    fetch('http://localhost:8080/staff', {
+    fetch('/staff', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'

@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Fetching initial list of appointments
-    fetch('http://localhost:8080/appointments', {
+    fetch('/appointments', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
         console.error('Error:', error);
     });
 
-    fetch('http://localhost:8080/staff/clinicianNames', {
+    fetch('/staff/clinicianNames', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'

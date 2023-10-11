@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let params = new URLSearchParams(window.location.search);
     appointmentId = params.get('id');
 
-    fetch('http://localhost:8080/appointments/byId/' + appointmentId, {
+    fetch('/appointments/byId/' + appointmentId, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     document.getElementById('searchPatient').addEventListener('click', function() {
         var lastName = document.getElementById('patientLastName').value;
-        fetch('http://localhost:8080/patients/searchPatient?lastName=' + lastName)
+        fetch('/patients/searchPatient?lastName=' + lastName)
             .then(response => response.json())
             .then(patients => {
                 var patientTBody = document.getElementById('patientList').getElementsByTagName('tbody')[0];
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     document.getElementById('searchClinician').addEventListener('click', function() {
         var lastName = document.getElementById('clinicianLastName').value;
-        fetch('http://localhost:8080/staff/searchClinician?lastName=' + lastName)
+        fetch('/staff/searchClinician?lastName=' + lastName)
             .then(response => response.json())
             .then(clinicians => {
                 var clinicianTBody = document.getElementById('clinicianList').getElementsByTagName('tbody')[0];
@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function() {
         };
 
 
-        fetch('http://localhost:8080/appointments/update/' + appointmentId, {
+        fetch('/appointments/update/' + appointmentId, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

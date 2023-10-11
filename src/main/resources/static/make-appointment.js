@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     document.getElementById('searchPatient').addEventListener('click', function() {
         var lastName = document.getElementById('patientLastName').value;
-        fetch('http://localhost:8080/patients/searchPatient?lastName=' + lastName)
+        fetch('/patients/searchPatient?lastName=' + lastName)
             .then(response => response.json())
             .then(patients => {
                 var patientTBody = document.getElementById('patientList').getElementsByTagName('tbody')[0];
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     document.getElementById('searchClinician').addEventListener('click', function() {
         var lastName = document.getElementById('clinicianLastName').value;
-        fetch('http://localhost:8080/staff/searchClinician?lastName=' + lastName)
+        fetch('/staff/searchClinician?lastName=' + lastName)
             .then(response => response.json())
             .then(clinicians => {
                 var clinicianTBody = document.getElementById('clinicianList').getElementsByTagName('tbody')[0];
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function() {
             datetime: datetime
         };
 
-        fetch('http://localhost:8080/appointments/schedule', {
+        fetch('/appointments/schedule', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

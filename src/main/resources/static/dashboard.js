@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('welcome').innerHTML = 'Welcome, ' + name;
 
     // Send a GET request to get the list of patients
-    fetch('http://localhost:8080/patients', {
+    fetch('/patients', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
